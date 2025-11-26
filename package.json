@@ -1,0 +1,23 @@
+{
+  "name": "workspace",
+  "version": "1.0.0",
+  "description": "Container-based Claude Code Workflow for Qiita Posts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kamy-dev/kamimizu-qiita-docs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/kamy-dev/kamimizu-qiita-docs/issues"
+  },
+  "homepage": "https://github.com/kamy-dev/kamimizu-qiita-docs#readme",
+  "dependencies": {
+    "@qiita/qiita-cli": "^1.6.2"
+  }
+}

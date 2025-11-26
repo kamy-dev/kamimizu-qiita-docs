@@ -1,0 +1,32 @@
+services:
+  devcontainer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        TZ: ${TZ:-Asia/Tokyo}
+        CLAUDE_CODE_VERSION: latest
+        GIT_DELTA_VERSION: "0.18.2"
+        ZSH_IN_DOCKER_VERSION: "1.2.0"
+    image: ccqiita:latest
+    container_name: ccqiita
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    volumes:
+      - ..:/workspace:cached
+      - claude-code-bashhistory:/commandhistory
+      - claude-code-config:/home/node/.claude
+      - ccqiita-node-modules:/workspace/node_modules
+    environment:
+      NODE_OPTIONS: "--max-old-space-size=4096"
+      CLAUDE_CONFIG_DIR: /home/node/.claude
+      POWERLEVEL9K_DISABLE_GITSTATUS: "true"
+    user: node
+    working_dir: /workspace
+    command: sleep infinity
+
+volumes:
+  claude-code-bashhistory:
+  claude-code-config:
+  ccqiita-node-modules:
