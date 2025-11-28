@@ -188,42 +188,49 @@ npx qiita publish c732657828b83976db47 --root ./my_articles/
 
 詳細なログを出力できます。
 
-````console
+```console
 npx qiita login --verbose
 npx qiita preview --verbose
-````
+```
 
 ## プロジェクト構成
 
-- `public/` - 記事ファイル（Markdown）
-- `templates/` - 記事テンプレート
-  - `introduction-template.md` - 入門記事テンプレート
-  - `bug-fix-template.md` - バグ修正記事テンプレート
-  - `tried-it-out-template.md` - 試してみた記事テンプレート
-- `rules/` - プロジェクト運用ルール
-  - `qiita-writing-rules.md` - 記事執筆ルール
-  - `git-commit-rules.md` - コミットメッセージルール
-- `draft/` - 記事ファイルのドラフトとなるバーバラミント流ピラミッド型のメモ(Markdown、mermaid)
-
-## 記事作成の重要なルール
-
-### 記事メタデータフォーマット
-```yaml
----
-title: "SEO対策が見込める内容に即したキャッチーなタイトル"
-emoji: "🐡" # コンテンツの内容を最もわかりやすく表す絵文字
-type: "tech" # tech: 技術記事 / idea: アイデア
-topics: [] # コンテンツの内容をもっと反映する一般的によく使われているタグ
-published: false
----
-````
+-   `public/` - 記事ファイル（Markdown）
+-   `templates/` - 記事テンプレート
+    -   `introduction-template.md` - 入門記事テンプレート
+    -   `bug-fix-template.md` - バグ修正記事テンプレート
+    -   `tried-it-out-template.md` - 試してみた記事テンプレート
+-   `rules/` - プロジェクト運用ルール
+    -   `qiita-writing-rules.md` - 記事執筆ルール
+    -   `git-commit-rules.md` - コミットメッセージルール
+-   `references/` - 各記事で伝えたい内容、参考リンクをまとめた md ファイル(<記事名>.md) ※記事作成時はこちらを必ず参照してください
+-   `draft/` - 記事ファイルのドラフトとなるバーバラミント流ピラミッド型のメモ(Markdown、mermaid)
 
 ---
 
 ## 個人設定
-これ以降は利用者自身の状況に合わせて設定を追加してください 
 
+これ以降は利用者自身の状況に合わせて設定を追加してください
 
+## 記事作成の重要なルール
+
+### 記事メタデータフォーマット
+
+```yaml
+---
+title: newArticle001 # 記事のタイトル
+tags:
+    - "" # タグ（ブロックスタイルで複数タグを追加できます） 
+    **Qiitaで最も検索されているタグかつ記事タイトルに関係するタグを適用してください。reference配下で5つに満たない場合、必ず5つタグを設定してください**  
+    **タグは、https://qiita.com/tags から探してください。**
+private: false # true: 限定共有記事 / false: 公開記事
+updated_at: "" # 記事を投稿した際に自動的に記事の更新日時に変わります
+id: null # 記事を投稿した際に自動的に記事のUUIDに変わります
+organization_url_name: kyndryl # 関連付けるOrganizationのURL名 (default: null)
+slide: false # true: スライドモードON / false: スライドモードOFF
+---
+# new article body
+```
 
 ### コミットメッセージフォーマット
 
