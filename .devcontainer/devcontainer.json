@@ -31,7 +31,8 @@
     }
   },
   "remoteUser": "node",
-  "postStartCommand": "sudo /usr/local/bin/init-firewall.sh",
-  "waitFor": "postStartCommand",
+  "postCreateCommand": "npm install",
+  // "postStartCommand": "sudo /usr/local/bin/init-firewall.sh",
+  // "waitFor": "postStartCommand",
   "shutdownAction": "stopCompose"
 }
