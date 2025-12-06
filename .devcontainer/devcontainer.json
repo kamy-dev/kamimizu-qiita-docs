@@ -30,9 +30,9 @@
       }
     }
   },
+  "forwardPorts": [8888],
   "remoteUser": "node",
-  "postCreateCommand": "npm install",
-  // "postStartCommand": "sudo /usr/local/bin/init-firewall.sh",
-  // "waitFor": "postStartCommand",
+  "postCreateCommand": "sudo /usr/local/bin/init-firewall.sh && npm install",
+  "waitFor": "postCreateCommand",
   "shutdownAction": "stopCompose"
 }

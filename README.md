@@ -8,14 +8,14 @@
 
 ## Setup
 
-### 1. Dev Container 起動後、Qiita CLI インストール
+### 1. Dev Container 起動後、初期構築
 
     ```bash
-    # 依存モジュールインストール
-    npm ci
-
     # Qiita CLIバージョン確認
     npx qiita version
+
+    # Qiita CLI setup
+    npx qiita init
     ```
 
 ### 2. Qiita CLI 環境セットアップ

@@ -17,7 +17,6 @@ services:
       - ..:/workspace:cached
       - claude-code-bashhistory:/commandhistory
       - claude-code-config:/home/node/.claude
-      - ccqiita-node-modules:/workspace/node_modules
     environment:
       NODE_OPTIONS: "--max-old-space-size=4096"
       CLAUDE_CONFIG_DIR: /home/node/.claude
@@ -29,4 +28,3 @@ services:
 volumes:
   claude-code-bashhistory:
   claude-code-config:
-  ccqiita-node-modules:

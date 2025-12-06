@@ -1,4 +1,4 @@
-FROM node:22
+FROM node:25-bookworm-slim
 
 ARG TZ
 ARG CLAUDE_CODE_VERSION=latest
@@ -31,7 +31,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && ARCH=$(dpkg --print-architecture) \
   && curl -fsSL -o "git-delta_${GIT_DELTA_VERSION}_${ARCH}.deb" "https://github.com/dandavison/delta/releases/download/${GIT_DELTA_VERSION}/git-delta_${GIT_DELTA_VERSION}_${ARCH}.deb" \
   && dpkg -i "git-delta_${GIT_DELTA_VERSION}_${ARCH}.deb" \
-  && rm "git-delta_${GIT_DELTA_VERSION}_${ARCH}.deb"
+  && rm "git-delta_${GIT_DELTA_VERSION}_${ARCH}.deb" \
+  && mkdir -p /usr/share/doc/fzf/examples \
+  && curl -fsSL -o /usr/share/doc/fzf/examples/key-bindings.zsh https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.zsh \
+  && curl -fsSL -o /usr/share/doc/fzf/examples/completion.zsh https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.zsh
 
 WORKDIR /workspace
 
@@ -44,8 +47,6 @@ USER node
 RUN sh -c "$(curl -fsSL https://github.com/deluan/zsh-in-docker/releases/download/v${ZSH_IN_DOCKER_VERSION}/zsh-in-docker.sh)" -- \
   -p git \
   -p fzf \
-  -a "source /usr/share/doc/fzf/examples/key-bindings.zsh" \
-  -a "source /usr/share/doc/fzf/examples/completion.zsh" \
   -a "export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
   -x \
   && npm install -g @anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}
@@ -55,6 +56,7 @@ COPY init-firewall.sh /usr/local/bin/
 USER root
 RUN chmod +x /usr/local/bin/init-firewall.sh \
   && echo "node ALL=(root) NOPASSWD: /usr/local/bin/init-firewall.sh" > /etc/sudoers.d/node-firewall \
+  && echo "node ALL=(root) NOPASSWD: /bin/chown" >> /etc/sudoers.d/node-firewall \
   && chmod 0440 /etc/sudoers.d/node-firewall
 
 USER node
