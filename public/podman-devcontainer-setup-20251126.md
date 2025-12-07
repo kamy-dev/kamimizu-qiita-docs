@@ -1,14 +1,14 @@
 ---
-title: "Podman環境でDev Containers利用時の問題に終止符を打つ"
+title: Podman環境でDev Containers利用時の問題に終止符を打つ
 tags:
-  - "Podman"
-  - "Docker"
-  - "devcontainer"
-  - "VSCode"
-  - "Windows"
+  - Windows
+  - Docker
+  - VSCode
+  - Podman
+  - devcontainer
 private: false
-updated_at: ""
-id: null
+updated_at: '2025-12-07T14:35:29+09:00'
+id: d993dcdc9e6b4673c8d1
 organization_url_name: kyndryl
 slide: false
 ignorePublish: false
