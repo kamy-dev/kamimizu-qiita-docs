@@ -7,7 +7,7 @@ tags:
   - Podman
   - devcontainer
 private: false
-updated_at: '2025-12-07T14:50:07+09:00'
+updated_at: '2025-12-08T13:14:32+09:00'
 id: d993dcdc9e6b4673c8d1
 organization_url_name: kyndryl
 slide: false
