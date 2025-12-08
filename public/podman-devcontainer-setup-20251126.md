@@ -16,9 +16,9 @@ ignorePublish: false
 
 ## はじめに
 
-Podman 環境で VS Code の拡張機能である Dev Containers を利用しようとしたところ、コンテナへの接続ができない問題が起きていました。  
-Dev Containers は、コンテナ内で開発を進められるためローカル環境を汚さず、また共同開発においても開発環境差異を吸収してくれるメリットがあるため利用したかったのですが、半年くらい解決に時間がかかりました。  
-本記事では、これらの問題に対する解決方法が分かったので共有します。
+Podman 環境で VS Code の拡張機能「Dev Containers」を利用しようとしたところ、コンテナへの接続ができない問題が発生しました。
+Dev Containers は、コンテナ内で開発を進められるためローカル環境を汚さず、また共同開発において開発環境の差異を吸収してくれるメリットがあります。ぜひ活用したかったのですが、解決に半年ほどかかりました。
+本記事では、この問題の解決方法を共有します。
 
 ### 動作確認環境
 
@@ -27,6 +27,13 @@ Dev Containers は、コンテナ内で開発を進められるためローカ�
 | OS                      | Windows 11 |
 | VS Code                 | 1.106.2    |
 | Dev Containers 拡張機能 | 0.431.1    |
+
+## 想定読者
+
+- Podman 環境でこれから開発を始めたい方
+- Podman 環境で開発しており、Dev Containers の使い方がわからない方
+- Docker から Podman への移行を検討している方
+- Podman や Dev Containers に興味のある方
 
 ## 結論
 
@@ -43,7 +50,7 @@ VS Code の **ユーザー設定**（User Settings の `settings.json`）に以�
 ```
 
 :::note warn
-ワークスペース設定やプロファイル設定ではなく、必ず**ユーザー設定**に追加してください。VS Code 1.95.0 以降ではスコープの問題により、ワークスペース設定に記述しても正しく動作しない場合があります。
+ワークスペース設定やプロファイル設定ではなく、必ず**ユーザー設定**に追加してください。VS Code 1.95.0 以降では設定スコープの仕様変更により、ワークスペース設定に記述しても正しく動作しない場合があります。
 :::
 
 ## Dev Containers とは
@@ -69,7 +76,7 @@ https://code.visualstudio.com/docs/devcontainers/containers
 Podman を使用している環境で、Dev Containers 拡張機能からコンテナを起動しようとすると、Podman ソケットへの接続エラーが発生しました。
 これは、Dev Containers 拡張機能がデフォルトで Docker を前提とした設定になっているためです。
 
-なお、Podmanコンテナ接続におけるアーキテクチャについて以下のRedHat公式記事が参考になるかと思いますので共有させていただきます。
+Podman のリモートクライアント接続アーキテクチャについては、以下の Red Hat 公式記事が参考になります。
 
 https://www.redhat.com/en/blog/podman-clients-macos-windows
 
@@ -95,7 +102,7 @@ https://www.redhat.com/en/blog/podman-clients-macos-windows
 | `dockerComposePath`  | Compose ツールのパスを `podman-compose` に変更 |
 | `executeInWSLDistro` | 実行する WSL ディストリビューションを指定      |
 | `forwardWSLServices` | WSL サービスの転送を無効化                     |
-| `dockerSocketPath`   | Podman のソケットパスを指定。<br>`npipe://\\\\.\\pipe\\podman-machine-default` は Windows（または WSL 等を含む環境）で使われる「名前付きパイプ (named pipe)」を指す URI 形式です。<br>なお、`podman-machine-default`はPodman machine名なので、Podman環境構築時に別名を指定して構築した場合は、それを指定してください。  |
+| `dockerSocketPath`   | Podman のソケットパスを指定。<br>`npipe://\\\\.\\pipe\\podman-machine-default` は Windows 環境で使われる「名前付きパイプ（Named Pipe）」を指す URI 形式です。<br>なお、`podman-machine-default` は Podman マシン名です。環境構築時に別名を指定した場合は、その名前に置き換えてください。  |
 
 ### 設定手順
 
@@ -106,10 +113,10 @@ https://www.redhat.com/en/blog/podman-clients-macos-windows
 
 ## まとめ
 
-Podman 環境で Dev Containers を使用するには、Podman のための VS Code 設定が必要です。  
+Podman 環境で Dev Containers を使用するには、Podman 用の VS Code 設定が必要です。
 
 :::note warn
-Dev Containers 拡張機能のバージョンによっては正常にコンテナ接続できないことがあります。その場合は、拡張機能を以前のバージョンにダウングレードすることで解決することがあります（VS Code の拡張機能画面から「他のバージョンをインストール」を選択）。
+Dev Containers 拡張機能のバージョンによっては正常にコンテナ接続できないことがあります。その場合は、拡張機能を以前のバージョンにダウングレードすることで解決する場合があります（VS Code の拡張機能画面から「他のバージョンをインストール」を選択）。
 :::
 
 ## 参考記事
